@@ -1,5 +1,8 @@
 from flat import Bill, Flatmate
-from report import ReportPdf
+from report import ReportPdf,FileSharer
+
+from dotenv import load_dotenv
+load_dotenv()
 
 # CLI
 flatmate1_name = input("Hi, Whats your name? ")
@@ -21,4 +24,7 @@ print(f"{flatmate2.name} pays: {flatmate2.pays(bill=the_bill, flatmate=flatmate1
 
 pdf_report = ReportPdf(filename=f"{the_bill.period}.pdf")
 pdf_report.generate(flatmate1=flatmate1, flatmate2=flatmate2, bill=the_bill)
-pdf_report.url_print()
+
+# Print url
+file_link = FileSharer(file_path=f'files/{pdf_report.filename}')
+file_link.share()
