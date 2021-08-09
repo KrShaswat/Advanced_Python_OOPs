@@ -1,7 +1,12 @@
 import webbrowser
-from os import path
+from os import path,getenv
 
 from fpdf import FPDF
+
+from filestack import Client
+
+from dotenv import load_dotenv
+load_dotenv()
 
 
 class ReportPdf:
@@ -52,4 +57,10 @@ class ReportPdf:
         # Here Ardit changes Directory to files/
         # os.chdir("files")
         # I prefer it this way
-        webbrowser.open('file://' + path.realpath(f"files/{self.filename}"))
+        # webbrowser.open('file://' + path.realpath(f"files/{self.filename}"))
+
+    def url_print(self):
+        client = Client(getenv('API_KEY'))
+
+        new_filelink = client.upload(filepath=f'files/{self.filename}')
+        print("The pdf file link: "+new_filelink.url)

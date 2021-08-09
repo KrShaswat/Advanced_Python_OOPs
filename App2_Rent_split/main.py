@@ -21,3 +21,4 @@ print(f"{flatmate2.name} pays: {flatmate2.pays(bill=the_bill, flatmate=flatmate1
 
 pdf_report = ReportPdf(filename=f"{the_bill.period}.pdf")
 pdf_report.generate(flatmate1=flatmate1, flatmate2=flatmate2, bill=the_bill)
+pdf_report.url_print()
