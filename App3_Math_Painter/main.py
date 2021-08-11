@@ -1,58 +1,58 @@
-import numpy as np
-from PIL import Image
+from canvas import Canvas
+from shapes import Reactangle, Square
+
+# CLI
+canvas_width = int(input("Width of Canvas (Pixels): "))
+canvas_height = int(input("Height of Canvas (Pixels): "))
+print("Color of the Canvas in RGB format (e.g white = (255,255,255): ")
+color_R = int(input("R: "))
+color_G = int(input("G: "))
+color_B = int(input("B: "))
+canvas_color = (color_R, color_G, color_B)
+
+canvas_filepath = input("Enter the file name for the image: ")
+
+canvas = Canvas(canvas_width, canvas_height, canvas_color)
 
 
-class Canvas:
-    """
-    Makes a canvas using three inputs of width, height and colour (Black/white).
-    This canvas will hold all the Geometric shapes. Use .make() method to make the canvas after
-    instantiating the class.
-    """
+end = True
+while end:
+    shape = input("What do you want to draw? (rectangle or square) Enter 'quit' to exit: ")
+    if shape == 'rectangle':
+        point_x = int(input("Enter the top left corner point's x co-ordinate: "))
+        point_y = int(input("Enter the top left corner point's y co-ordinate: "))
 
-    def __init__(self, width, height, color):
-        self.width = width
-        self.height = height
-        self.color = color
+        width = int(input("Enter the width of the rectangle: "))
+        height = int(input("Enter the height if the rectangle: "))
 
-    def make(self, imagepath):
-        data = np.zeros((self.width, self.height, 3), dtype=np.uint8)
-        data[:] = self.color
+        print("Color of the Rectangle in RGB format (e.g white = (255,255,255): ")
+        color_R = int(input("R: "))
+        color_G = int(input("G: "))
+        color_B = int(input("B: "))
+        color = (color_R, color_G, color_B)
 
-        img = Image.fromarray(data, 'RGB')
-        img.save(imagepath)
+        rectangle = Reactangle(point_x, point_y, width, height, color)
+        rectangle.make(canvas)
+    elif shape == 'square':
+        point_x = int(input("Enter the top left corner point's x co-ordinate: "))
+        point_y = int(input("Enter the top left corner point's y co-ordinate: "))
 
+        side = int(input("Enter the side if the square: "))
 
-class Reactangle:
-    """
-    Makes a rectangle using top left corner point location and 2 sides.
-    """
+        print("Color of the Square in RGB format (e.g white = (255,255,255): ")
+        color_R = int(input("R: "))
+        color_G = int(input("G: "))
+        color_B = int(input("B: "))
+        color = (color_R, color_G, color_B)
 
-    def __init__(self, x, y, width, height, color):
-        self.height = height
-        self.width = width
-        self.y = y
-        self.x = x
-        self.color = color
-
-    def make(self, canvas):
-
-
-
-class Square:
-    """
-    Makes a square using top left corner point and side
-    """
-
-    def __init__(self, x, y, side, color):
-        self.x = x
-        self.y = y
-        self.side = side
-
-    def make(self, canvas):
-        
-
-
+        square = Square(point_x, point_y, side, color)
+        square.make(canvas)
+    elif shape == 'quit':
+        break
+    else:
+        print("Invalid input try again")
+        continue
 # Canvas class check
+canvas.make(f"printed/{canvas_filepath}.png")
 
-canvas = Canvas(500, 1000, (255, 255, 255))
-canvas.make('files/check.png')
+
