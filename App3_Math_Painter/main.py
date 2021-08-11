@@ -18,7 +18,7 @@ canvas = Canvas(canvas_width, canvas_height, canvas_color)
 end = True
 while end:
     shape = input("What do you want to draw? (rectangle or square) Enter 'quit' to exit: ")
-    if shape == 'rectangle':
+    if shape.lower() == 'rectangle':
         point_x = int(input("Enter the top left corner point's x co-ordinate: "))
         point_y = int(input("Enter the top left corner point's y co-ordinate: "))
 
@@ -33,7 +33,7 @@ while end:
 
         rectangle = Reactangle(point_x, point_y, width, height, color)
         rectangle.make(canvas)
-    elif shape == 'square':
+    elif shape.lower() == 'square':
         point_x = int(input("Enter the top left corner point's x co-ordinate: "))
         point_y = int(input("Enter the top left corner point's y co-ordinate: "))
 
@@ -47,7 +47,7 @@ while end:
 
         square = Square(point_x, point_y, side, color)
         square.make(canvas)
-    elif shape == 'quit':
+    elif shape.lower() == 'quit':
         break
     else:
         print("Invalid input try again")
