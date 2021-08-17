@@ -27,4 +27,4 @@ pdf_report.generate(flatmate1=flatmate1, flatmate2=flatmate2, bill=the_bill)
 
 # Print url
 file_link = FileSharer(file_path=f'files/{pdf_report.filename}')
-file_link.share()
+print(file_link.share())

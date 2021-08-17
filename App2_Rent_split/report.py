@@ -71,4 +71,4 @@ class FileSharer:
     def share(self):
         client = Client(self.api_key)
         new_filelink = client.upload(filepath=self.file_path)
-        print("The pdf file link: "+new_filelink.url)
+        return new_filelink.url

@@ -1,0 +1,74 @@
+<CameraScreen>:
+    GridLayout:
+        cols: 1
+        spacing: 10
+        padding: 10
+        Camera:
+            id: camera
+            resolution: (640, 480)
+            play: False
+            size_hint_y: 0.8
+            opacity: 0
+        Button:
+            text: 'Start Camera' if root.ids.camera.play == False else 'Stop Camera'
+            on_press: root.start() if root.ids.camera.play == False else root.stop()
+            size_hint_y: 0.1
+            background_normal: 'button/normal.png'
+            background_down: 'button/down.png'
+
+        Button:
+            text: 'Capture'
+            on_press: root.capture()
+            size_hint_y: 0.1
+            background_normal: 'button/normal.png'
+            background_down: 'button/down.png'
+
+<ImageScreen>
+    GridLayout:
+        cols: 1
+        spacing: 10
+        padding: 10
+        Image:
+            id: img
+            size_hint_y: 0.7
+        Button:
+            text: 'Create Sharable Link'
+            size_hint_y: 0.1
+            on_press: root.create_link()
+            background_normal: 'button/normal.png'
+            background_down: 'button/down.png'
+
+        Label:
+            id: link
+            text: ""
+            size_hint_y: 0.1
+        GridLayout:
+            cols: 2
+            spacing: 10
+            size_hint_y: 0.1
+            Button:
+                text: 'Copy'
+                on_press: root.copy()
+                background_normal: 'button/normal.png'
+                background_down: 'button/down.png'
+
+            Button:
+                text: 'Open'
+                on_press: root.open()
+                background_normal: 'button/normal.png'
+                background_down: 'button/down.png'
+
+
+<RootWidget>:
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    CameraScreen:
+        id: camera_screen
+        name: 'camera_screen'
+    ImageScreen:
+        id: image_screen
+        name: 'image_screen'
